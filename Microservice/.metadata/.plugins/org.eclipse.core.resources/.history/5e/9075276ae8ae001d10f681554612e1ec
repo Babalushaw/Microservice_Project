@@ -1,0 +1,23 @@
+
+server:
+  port: 8083
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost5434/bank_service
+    username: postgres
+    password: Babalu@21
+
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+    hibernate:
+      jdbc.lob.non_contextual_creation: true
+      naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      ddl-auto: update
+
+
+

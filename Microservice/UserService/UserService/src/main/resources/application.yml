@@ -1,0 +1,83 @@
+server:
+  port: 8082
+
+
+
+
+spring:
+  application:
+    name: USER-SERVICE
+  config:
+    import: configserver:http://localhost:8086
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service
+    username: root
+    password: Babalu@21
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#  application:
+#    name: USER-SERVICE
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect.storage_engine: innodb
+
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8081/eureka
+
+# Faulty tolerance
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      loanServiceBreaker:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+  retry:
+    instances:
+      loanServiceRetry:
+        max-attempts: 3
+        wait-duration: 5s
+
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-refresh-period: 4s
+        limit-for-period: 2
+        timeout-duration: 2s

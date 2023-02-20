@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bank_service
+    username: postgres
+    password: Babalu@21
+  application:
+    name: BANK-SERVICE
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8081/eureka

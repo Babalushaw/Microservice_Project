@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "spring.jpa.hibernate.jdbc.lob.non_contextual_creation",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.jdbc.lob.non_contextual_creation'"
+  },
+  {
+    "name": "spring.jpa.hibernate.jdbc.lob.non_contextual_creation",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.jdbc.lob.non_contextual_creation'"
+  },
+  {
+    "name": "spring.jpa.hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.dialect'"
+  },
+  {
+    "name": "spring.jpa.hibernate.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.format_sql'"
+  }
+]}
